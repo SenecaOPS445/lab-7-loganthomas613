@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Student ID: [seneca_id] 
+# Student ID: 132731225
 class Time:
     """Simple object type for time of the day.
         data attributes: hour, minute, second
@@ -13,16 +13,19 @@ class Time:
         self.minute = minute
         self.second = second
 
+    def __str__(self):
+        '''return a string representation for the object self'''
+        return  f'{self.hour:02d}:{self.minute:02d}:{self.second:02d}'
+
     def format_time(self):
         """Return time object (t) as a formatted string"""
         return f'{self.hour:02d}:{self.minute:02d}:{self.second:02d}'
 
     def sum_times(self, t2):
-        """Add two time objests and return the sum."""
-        self_sec = self.time_to_sec()
-        t2_sec = t2.time_to_sec()
-        sum = sec_to_time(self_sec + t2_sec)
-        return sum
+        """Add two time objects and update the current time object."""
+        total_seconds = self.time_to_sec() + t2.time_to_sec()
+        new_time = sec_to_time(total_seconds)
+        self.hour, self.minute, self.second = new_time.hour, new_time.minute, new_time.second
 
     def change_time(self, seconds):
         time_seconds = self.time_to_sec()
